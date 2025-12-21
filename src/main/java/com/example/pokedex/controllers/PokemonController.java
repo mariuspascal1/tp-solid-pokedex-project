@@ -14,6 +14,7 @@ public class PokemonController {
     public void setProperties(Pokemon pokemon, Integer pokemonId) {
 
         this.pokemonHttpProvider.makeHttpRequest("https://pokeapi.co/api/v2/pokemon/", pokemonId);
+        this.pokemonHttpProvider.parseJSONData();
 
         Integer height = this.pokemonHttpProvider.getIntProperty("height");
         Integer weight = this.pokemonHttpProvider.getIntProperty("weight");
@@ -21,6 +22,7 @@ public class PokemonController {
         pokemon.setWeight(weight);
 
         this.pokemonHttpProvider.makeHttpRequest("https://pokeapi.co/api/v2/pokemon-species/", pokemonId);
+        this.pokemonHttpProvider.parseJSONData();
 
         String name = this.pokemonHttpProvider.getStringProperty("names");
         String flavor_text_entry = this.pokemonHttpProvider.getStringProperty("flavor_text_entries");

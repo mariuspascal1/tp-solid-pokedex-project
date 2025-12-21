@@ -7,7 +7,6 @@ import com.example.pokedex.utilities.AbstractPokedexRunner;
 
 public class PokedexRunner extends AbstractPokedexRunner  {
 
-    private Pokemon pokemon = new Pokemon();
 
     @Override
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {
@@ -16,9 +15,10 @@ public class PokedexRunner extends AbstractPokedexRunner  {
 
     @Override
     public void runPokedex(Integer pokemonId) throws Exception {
+        Pokemon pokemon = new Pokemon(pokemonId);
         PokemonController pokemonController = new PokemonController();
-        pokemonController.setProperties(this.pokemon, pokemonId);
+        pokemonController.setProperties(pokemon, pokemonId);
         PokemonView pokemonView = new PokemonView();
-        pokemonView.print(this.pokemon);
+        pokemonView.print(pokemon);
     }
 }

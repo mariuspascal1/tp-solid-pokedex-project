@@ -15,8 +15,8 @@ public class Pokemon {
         this.weight = weight;
     }
 
-    public Pokemon() {
-        new Pokemon(null, null, null, null, null);
+    public Pokemon(Integer id) {
+        new Pokemon(id, null, null, null, null);
     }
 
     public Integer getId() {
