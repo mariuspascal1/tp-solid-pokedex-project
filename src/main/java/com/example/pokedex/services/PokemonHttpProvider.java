@@ -16,7 +16,13 @@ public class PokemonHttpProvider implements PropertyProviderInterface {
 
     private String pokemonData;
     private JSONObject rootObject;
-    private String locale = "en";
+    private String locale;
+
+    public PokemonHttpProvider() {
+        this.pokemonData = "";
+        this.rootObject = null;
+        this.locale = "en";
+    }
 
     public void makeHttpRequest(String url, Integer pokemon_id)  {
         try {
@@ -81,7 +87,7 @@ public class PokemonHttpProvider implements PropertyProviderInterface {
             }
         }
         return null;
-        }
+    }
 
     @Override
     public String getStringProperty(String propertyName) {
