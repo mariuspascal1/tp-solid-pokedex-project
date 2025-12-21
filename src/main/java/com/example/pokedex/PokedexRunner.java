@@ -1,9 +1,13 @@
 package com.example.pokedex;
 
-
+import com.example.pokedex.models.Pokemon;
+import com.example.pokedex.controllers.PokemonController;
 import com.example.pokedex.utilities.AbstractPokedexRunner;
 
 public class PokedexRunner extends AbstractPokedexRunner  {
+
+    private Pokemon pokemon;
+    private PokemonController pokemonController;
 
     @Override
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {
@@ -12,7 +16,6 @@ public class PokedexRunner extends AbstractPokedexRunner  {
 
     @Override
     public void runPokedex(Integer pokemonId) throws Exception {
-        // TODO: modify with real data
         System.out.printf("=============================\n");
         System.out.printf("Pokémon # %s\n", pokemonId);
         System.out.printf("Nom : Bulbizarre\n");
