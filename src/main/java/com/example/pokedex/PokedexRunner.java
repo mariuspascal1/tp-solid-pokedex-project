@@ -2,12 +2,12 @@ package com.example.pokedex;
 
 import com.example.pokedex.models.Pokemon;
 import com.example.pokedex.controllers.PokemonController;
+import com.example.pokedex.views.PokemonView;
 import com.example.pokedex.utilities.AbstractPokedexRunner;
 
 public class PokedexRunner extends AbstractPokedexRunner  {
 
-    private Pokemon pokemon;
-    private PokemonController pokemonController;
+    private Pokemon pokemon = new Pokemon();
 
     @Override
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {
@@ -16,12 +16,9 @@ public class PokedexRunner extends AbstractPokedexRunner  {
 
     @Override
     public void runPokedex(Integer pokemonId) throws Exception {
-        System.out.printf("=============================\n");
-        System.out.printf("Pokémon # %s\n", pokemonId);
-        System.out.printf("Nom : Bulbizarre\n");
-        System.out.printf("Description : Il a une graine qui pousse sur son dos\n");
-        System.out.printf("Taille : 7\n");
-        System.out.printf("Poids : 69\n");
-        System.out.printf("=============================\n");
+        PokemonController pokemonController = new PokemonController();
+        pokemonController.setProperties(this.pokemon, pokemonId);
+        PokemonView pokemonView = new PokemonView();
+        pokemonView.print(this.pokemon);
     }
 }

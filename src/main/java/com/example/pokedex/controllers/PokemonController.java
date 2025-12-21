@@ -7,8 +7,8 @@ public class PokemonController {
 
     private final PokemonHttpProvider pokemonHttpProvider;
 
-    public PokemonController(PokemonHttpProvider pokemonHttpProvider) {
-        this.pokemonHttpProvider = pokemonHttpProvider;
+    public PokemonController() {
+        this.pokemonHttpProvider = new PokemonHttpProvider();
     }
 
     public void setProperties(Pokemon pokemon, Integer pokemonId) {
