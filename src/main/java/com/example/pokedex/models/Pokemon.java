@@ -16,11 +16,11 @@ public class Pokemon {
     }
 
     public Pokemon(Integer id) {
-        new Pokemon(id, null, null, null, null);
+        this(id, null, null, null, null);
     }
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -28,7 +28,7 @@ public class Pokemon {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) { 
@@ -36,7 +36,7 @@ public class Pokemon {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -44,7 +44,7 @@ public class Pokemon {
     }
 
     public Integer getHeight() {
-        return height;
+        return this.height;
     }
 
     public void setHeight(Integer height) {
@@ -52,7 +52,7 @@ public class Pokemon {
     }
 
     public Integer getWeight() {
-        return weight;
+        return this.weight;
     }
 
     public void setWeight(Integer weight) {
