@@ -56,7 +56,17 @@ public class PokemonHttpProvider implements PropertyProviderInterface {
             System.err.println(e);
         }
     }
-    
+
+    private String normalizeFlavorText(String text) {
+    if (text == null) return null;
+
+    return text
+        .replace("\n", " ")
+        .replace("\f", " ")
+        .replaceAll("\\s+", " ")
+        .trim();
+}
+
     @Override
     public Integer getIntProperty(String propertyName) {
         if (this.rootObject == null) return null;
@@ -82,7 +92,7 @@ public class PokemonHttpProvider implements PropertyProviderInterface {
                 }
 
                 if ("flavor_text_entries".equals(propertyName)) {
-                    return ((String) JsonObj.get("flavor_text"));
+                    return normalizeFlavorText((String) JsonObj.get("flavor_text"));
                 }
             }
         }
