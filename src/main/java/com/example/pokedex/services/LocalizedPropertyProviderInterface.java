@@ -1,7 +1,10 @@
 package com.example.pokedex.services;
 
 /**
- * Adds locale management capability to a property provider.
+ * Adds locale management capability to a property provider. Separating these
+ * methods from {@link PropertyProviderInterface} prevents clients that do not
+ * need localization from depending on it, following the Interface Segregation
+ * Principle.
  */
 public interface LocalizedPropertyProviderInterface {
     /**

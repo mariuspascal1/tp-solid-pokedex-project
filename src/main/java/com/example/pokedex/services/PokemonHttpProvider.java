@@ -12,6 +12,10 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * Retrieves Pokémon data from the public PokeAPI and exposes selected
+ * properties, including localized strings for supported locales.
+ */
 public class PokemonHttpProvider extends AbstractPokemonProviderService implements LocalizedPropertyProviderInterface {
 
     private String pokemonData;
@@ -19,6 +23,9 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
     private JSONObject rootObjectSpecies;
     private String locale;
 
+    /**
+     * Creates a provider configured to use English localization by default.
+     */
     public PokemonHttpProvider() {
         this.pokemonData = "";
         this.rootObject = null;
@@ -26,6 +33,12 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         this.locale = "en";
     }
 
+    /**
+     * Fetches detailed Pokémon information and associated species metadata
+     * from the PokeAPI endpoints, caching results for property accessors.
+     *
+     * @param pokemonId the identifier of the Pokémon to load
+     */
     @Override
     public void loadPokemon(Integer pokemonId) {
         makeHttpRequest("https://pokeapi.co/api/v2/pokemon/", pokemonId);
@@ -35,6 +48,13 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         this.rootObjectSpecies = parseJSONData(this.pokemonData);
     }
 
+    /**
+     * Performs an HTTP GET request to the given endpoint, storing the response
+     * body for later parsing.
+     *
+     * @param url        base URL to query
+     * @param pokemon_id identifier of the Pokémon to fetch
+     */
     public void makeHttpRequest(String url, Integer pokemon_id)  {
         try {
 
@@ -56,6 +76,12 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         }
     }
 
+    /**
+     * Parses the provided JSON payload into a {@link JSONObject} instance.
+     *
+     * @param jsonData raw JSON text returned by the API
+     * @return a parsed {@link JSONObject} or {@code null} if parsing fails
+     */
     public JSONObject parseJSONData(String jsonData) {
         try {
             JSONParser parser = new JSONParser();
@@ -69,6 +95,12 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         return null;
     }
 
+    /**
+     * Removes formatting artifacts commonly present in flavor text entries.
+     *
+     * @param text the raw flavor text to normalize
+     * @return a cleaned version of the text with whitespace normalized
+     */
     private String normalizeFlavorText(String text) {
         if (text == null) return null;
 
@@ -92,6 +124,14 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         return null;
     }
 
+    /**
+     * Retrieves a localized string from an array of objects that include a
+     * language descriptor.
+     *
+     * @param array         the JSON array containing language-keyed entries
+     * @param propertyName  the property source ("names" or "flavor_text_entries")
+     * @return the value matching the current locale or {@code null} if absent
+     */
     public String extractLocalizedString(JSONArray array, String propertyName) {
         for (Object obj : array) {
             JSONObject JsonObj = (JSONObject) obj;

@@ -1,5 +1,12 @@
 package com.example.pokedex.models;
 
+/**
+ * Simple data container representing a Pokémon with no knowledge of where the
+ * data comes from. The class sticks to the Single Responsibility Principle by
+ * only modeling the domain state and related accessors, leaving retrieval and
+ * presentation to dedicated services and views.
+ */
+
 public class Pokemon {
     private Integer id;
     private String name;
@@ -15,6 +22,11 @@ public class Pokemon {
         this.weight = weight;
     }
 
+    /**
+     * Creates an empty Pokémon shell containing only its identifier.
+     *
+     * @param id the Pokédex identifier
+     */
     public Pokemon(Integer id) {
         this(id, null, null, null, null);
     }
@@ -23,36 +35,36 @@ public class Pokemon {
         return this.id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return this.name;
-    }
-
-    public void setName(String name) { 
-        this.name = name;
     }
 
     public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getHeight() {
         return this.height;
     }
 
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
     public Integer getWeight() {
         return this.weight;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) { 
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 
     public void setWeight(Integer weight) {

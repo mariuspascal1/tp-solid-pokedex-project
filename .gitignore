@@ -1,4 +1,13 @@
+# macOS
+.DS_Store
+
+# Java
+bin/
+*.class
+
+# Gradle
 /build/
 .gradle
 
+# Consignes
 consignes/sujet.html

@@ -1,9 +1,16 @@
 package com.example.pokedex.services;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.sqlite.SQLiteConfig;
 
-import java.sql.*;
-
+/**
+ * Provides Pokémon properties by querying a SQLite database.
+ */
 public class PokemonSqliteProvider extends AbstractPokemonProviderService {
 
     private final String databaseFilePath;
@@ -13,6 +20,11 @@ public class PokemonSqliteProvider extends AbstractPokemonProviderService {
     private Integer height;
     private Integer weight;
 
+    /**
+     * Builds a provider that connects to the specified SQLite database file.
+     *
+     * @param databaseFilePath absolute or relative path to the SQLite database
+     */
     public PokemonSqliteProvider(String databaseFilePath) {
         this.databaseFilePath = databaseFilePath;
 
@@ -22,11 +34,23 @@ public class PokemonSqliteProvider extends AbstractPokemonProviderService {
         this.weight = null;
     }
 
+    /**
+     * Loads Pokémon attributes from the SQLite database by delegating to a
+     * dedicated query method.
+     *
+     * @param pokemonId the identifier of the Pokémon to fetch
+     */
     @Override
     public void loadPokemon(Integer pokemonId) {
         makeDbRequest(pokemonId);
     }
 
+    /**
+     * Executes a database query to fetch the Pokémon row and caches its
+     * properties locally.
+     *
+     * @param pokemon_id the identifier of the Pokémon to search in the database
+     */
     public void makeDbRequest(Integer pokemon_id) {
         try {
 
@@ -60,7 +84,8 @@ public class PokemonSqliteProvider extends AbstractPokemonProviderService {
 
     @Override
     public Integer getIntProperty(String propertyName) {
-        // Implementation for retrieving integer properties from SQLite database
+        /** 
+         * Implementation for retrieving integer properties from SQLite database */
         if ("height".equals(propertyName)) {
             return this.height;
         } else if ("weight".equals(propertyName)) {
@@ -71,7 +96,8 @@ public class PokemonSqliteProvider extends AbstractPokemonProviderService {
 
     @Override
     public String getStringProperty(String propertyName) {
-        // Implementation for retrieving string properties from SQLite database
+        /** 
+         * Implementation for retrieving string properties from SQLite database */
         if ("name".equals(propertyName)) {
             return this.name;
         } else if ("description".equals(propertyName)) {
