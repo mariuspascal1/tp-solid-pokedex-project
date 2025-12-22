@@ -4,7 +4,7 @@ import org.sqlite.SQLiteConfig;
 
 import java.sql.*;
 
-public class PokemonSqliteProvider implements PropertyProviderInterface {
+public class PokemonSqliteProvider extends AbstractPokemonProviderService implements PropertyProviderInterface {
 
     String name;
     String description;
@@ -19,6 +19,11 @@ public class PokemonSqliteProvider implements PropertyProviderInterface {
         this.description = null;
         this.height = null;
         this.weight = null;
+    }
+
+    @Override
+    public void loadPokemon(Integer pokemonId) {
+        makeDbRequest(pokemonId);
     }
 
     public void makeDbRequest(Integer pokemon_id) {

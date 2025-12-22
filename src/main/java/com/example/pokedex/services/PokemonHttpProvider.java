@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class PokemonHttpProvider implements PropertyProviderInterface, LocalizedPropertyProviderInterface {
+public class PokemonHttpProvider extends AbstractPokemonProviderService implements PropertyProviderInterface, LocalizedPropertyProviderInterface {
 
     private String pokemonData;
     private JSONObject rootObject;
@@ -22,6 +22,15 @@ public class PokemonHttpProvider implements PropertyProviderInterface, Localized
         this.pokemonData = "";
         this.rootObject = null;
         this.locale = "en";
+    }
+
+    @Override
+    public void loadPokemon(Integer pokemonId) {
+        makeHttpRequest("https://pokeapi.co/api/v2/pokemon/", pokemonId);
+        parseJSONData();
+
+        makeHttpRequest("https://pokeapi.co/api/v2/pokemon-species/", pokemonId);
+        parseJSONData();
     }
 
     public void makeHttpRequest(String url, Integer pokemon_id)  {
