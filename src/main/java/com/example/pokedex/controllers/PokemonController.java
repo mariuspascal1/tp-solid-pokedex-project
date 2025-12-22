@@ -17,8 +17,8 @@ public class PokemonController {
 
         pokemon.setHeight(provider.getIntProperty("height"));
         pokemon.setWeight(provider.getIntProperty("weight"));
-        pokemon.setName(provider.getStringProperty("names"));
-        pokemon.setDescription(provider.getStringProperty("flavor_text_entries"));
+        pokemon.setName(provider.getStringProperty("name"));
+        pokemon.setDescription(provider.getStringProperty("description"));
     }
     
 }

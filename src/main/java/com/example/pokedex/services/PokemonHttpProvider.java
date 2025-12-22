@@ -115,8 +115,16 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
     public String getStringProperty(String propertyName) {
         if (this.rootObjectSpecies == null) return null;
 
+        String realPropertyName = propertyName;
+        if ("description".equals(propertyName)) {
+            realPropertyName = "flavor_text_entries";
+        }
+        if ("name".equals(propertyName)) {
+            realPropertyName = "names";
+        }
+
         try {
-            Object value = this.rootObjectSpecies.get(propertyName);
+            Object value = this.rootObjectSpecies.get(realPropertyName);
 
             /* Case 1: Simple string */
             if (value instanceof String) {
@@ -126,7 +134,7 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
             /* Case 2: Array */
             if (value instanceof JSONArray) {
                 JSONArray array = (JSONArray) value;
-                return extractLocalizedString(array, propertyName);
+                return extractLocalizedString(array, realPropertyName);
             }
 
         } catch (Exception e) {
