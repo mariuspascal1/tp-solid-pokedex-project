@@ -1,6 +1,5 @@
 package com.example.pokedex.utilities;
 
-import com.example.pokedex.services.PropertyProviderInterface;
 import com.example.pokedex.services.LocalizedPropertyProviderInterface;
 import org.sqlite.SQLiteConfig;
 
