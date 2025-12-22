@@ -16,21 +16,23 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
 
     private String pokemonData;
     private JSONObject rootObject;
+    private JSONObject rootObjectSpecies;
     private String locale;
 
     public PokemonHttpProvider() {
         this.pokemonData = "";
         this.rootObject = null;
+        this.rootObjectSpecies = null;
         this.locale = "en";
     }
 
     @Override
     public void loadPokemon(Integer pokemonId) {
         makeHttpRequest("https://pokeapi.co/api/v2/pokemon/", pokemonId);
-        parseJSONData();
+        this.rootObject = parseJSONData(this.pokemonData);
 
         makeHttpRequest("https://pokeapi.co/api/v2/pokemon-species/", pokemonId);
-        parseJSONData();
+        this.rootObjectSpecies = parseJSONData(this.pokemonData);
     }
 
     public void makeHttpRequest(String url, Integer pokemon_id)  {
@@ -54,16 +56,17 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         }
     }
 
-    public void parseJSONData() {
+    public JSONObject parseJSONData(String jsonData) {
         try {
             JSONParser parser = new JSONParser();
-            Object resultObject = parser.parse(this.pokemonData);
+            Object resultObject = parser.parse(jsonData);
             if (resultObject instanceof JSONObject) {
-                this.rootObject = (JSONObject) resultObject;
+                return (JSONObject) resultObject;
             }
         } catch (ParseException e) {
             System.err.println(e);
         }
+        return null;
     }
 
     private String normalizeFlavorText(String text) {
@@ -110,10 +113,10 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
 
     @Override
     public String getStringProperty(String propertyName) {
-        if (this.rootObject == null) return null;
+        if (this.rootObjectSpecies == null) return null;
 
         try {
-            Object value = this.rootObject.get(propertyName);
+            Object value = this.rootObjectSpecies.get(propertyName);
 
             /* Case 1: Simple string */
             if (value instanceof String) {
