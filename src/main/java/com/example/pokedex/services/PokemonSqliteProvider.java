@@ -4,16 +4,17 @@ import org.sqlite.SQLiteConfig;
 
 import java.sql.*;
 
-public class PokemonSqliteProvider extends AbstractPokemonProviderService implements PropertyProviderInterface {
+public class PokemonSqliteProvider extends AbstractPokemonProviderService {
 
-    String name;
-    String description;
-    Integer height;
-    Integer weight;
-    String databaseFilePath;
+    private final String databaseFilePath;
 
-    public PokemonSqliteProvider() {
-        this.databaseFilePath = "./ressources/pokemondatabase.sqlite";
+    private String name;
+    private String description;
+    private Integer height;
+    private Integer weight;
+
+    public PokemonSqliteProvider(String databaseFilePath) {
+        this.databaseFilePath = databaseFilePath;
 
         this.name = null;
         this.description = null;

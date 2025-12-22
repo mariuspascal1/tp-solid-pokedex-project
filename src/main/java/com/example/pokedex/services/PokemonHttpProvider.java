@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class PokemonHttpProvider extends AbstractPokemonProviderService implements PropertyProviderInterface, LocalizedPropertyProviderInterface {
+public class PokemonHttpProvider extends AbstractPokemonProviderService implements LocalizedPropertyProviderInterface {
 
     private String pokemonData;
     private JSONObject rootObject;

@@ -24,8 +24,7 @@ public class PokedexRunner extends AbstractPokedexRunner  {
                 break;
 
             case LOCAL_DATABASE:
-                PokemonSqliteProvider sqliteProvider = new PokemonSqliteProvider();
-                pokemonService = sqliteProvider;
+                pokemonService = new PokemonSqliteProvider(dbPath);
                 break;
 
             default:
