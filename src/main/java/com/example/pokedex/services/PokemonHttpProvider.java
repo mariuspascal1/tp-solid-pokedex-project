@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class PokemonHttpProvider implements PropertyProviderInterface {
+public class PokemonHttpProvider implements PropertyProviderInterface, LocalizedPropertyProviderInterface {
 
     private String pokemonData;
     private JSONObject rootObject;
@@ -125,12 +125,22 @@ public class PokemonHttpProvider implements PropertyProviderInterface {
 
     @Override
     public void setStringPropertyLocale(String localeCode) {
+        if (localeCode == null || localeCode.isBlank()) {
+            this.locale = "en";
+            return;
+        }
+        if (!localeCode.equals("en") && !localeCode.equals("fr")) {
+            this.locale = "en";
+            return;
+        }
+        this.locale = localeCode;
     }
 
     @Override
     public String getStringPropertyLocale() {
-        return "";
+        return this.locale;
     }
+
 
 
     // public static void main(String[] args) {
