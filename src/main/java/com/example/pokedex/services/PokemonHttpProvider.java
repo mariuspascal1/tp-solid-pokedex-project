@@ -58,14 +58,14 @@ public class PokemonHttpProvider implements PropertyProviderInterface, Localized
     }
 
     private String normalizeFlavorText(String text) {
-    if (text == null) return null;
+        if (text == null) return null;
 
-    return text
-        .replace("\n", " ")
-        .replace("\f", " ")
-        .replaceAll("\\s+", " ")
-        .trim();
-}
+        return text
+            .replace("\n", " ")
+            .replace("\f", " ")
+            .replaceAll("\\s+", " ")
+            .trim();
+    }
 
     @Override
     public Integer getIntProperty(String propertyName) {

@@ -1,6 +1,7 @@
 package com.example.pokedex.utilities;
 
 import com.example.pokedex.services.PropertyProviderInterface;
+import com.example.pokedex.services.LocalizedPropertyProviderInterface;
 import org.sqlite.SQLiteConfig;
 
 import java.sql.*;
@@ -139,7 +140,7 @@ public abstract class AbstractPokedexRunner {
     public abstract void runPokedex(Integer pokemonId) throws Exception;
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {}
 
-    public void setupServiceLocale(PropertyProviderInterface service) {
+    public void setupServiceLocale(LocalizedPropertyProviderInterface service) {
         service.setStringPropertyLocale(this.locale);
     }
 
