@@ -19,7 +19,7 @@ public class SQLiteExample {
 
             /* Prepare query */
             PreparedStatement stmt  = dbConnection.prepareStatement("SELECT id, name, description, height, weight FROM pokemons WHERE id = ?");
-            stmt.setInt(1, 8);
+            stmt.setInt(1, 5);
 
             /* Run query */
             ResultSet pokemonResultSet = stmt.executeQuery();
@@ -33,9 +33,5 @@ public class SQLiteExample {
         } catch (SQLException e) {
             System.err.println(e);
         }
-    }
-
-    public static void main(String[] args) {
-        makeDbRequest();
     }
 }

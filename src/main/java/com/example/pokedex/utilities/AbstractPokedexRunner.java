@@ -2,25 +2,12 @@ package com.example.pokedex.utilities;
 
 import com.example.pokedex.services.LocalizedPropertyProviderInterface;
 import com.example.pokedex.services.PokemonHttpProvider;
-import com.example.pokedex.services.PokemonSqliteProvider;
 
 import org.sqlite.SQLiteConfig;
 
 import java.sql.*;
 import java.util.Scanner;
 import java.util.Set;
-
-/**
- * Abstraction of a Pokedex runner that handles user interaction through the
- * console. This class manages the configuration of data sources and locales,
- * and delegates Pokémon retrieval and display to concrete implementations. 
- * It adheres to the Liskov Substitution Principle by allowing any subclass 
- * to be used interchangeably without altering the expected behavior. Concrete 
- * implementations such as {@link PokemonHttpProvider} and 
- * {@link PokemonSqliteProvider} can be substituted transparently without 
- * altering the behavior of the application, as they all respect the contract 
- * defined by the abstract base class.
- */
 
 public abstract class AbstractPokedexRunner {
 
@@ -154,11 +141,16 @@ public abstract class AbstractPokedexRunner {
     public abstract void runPokedex(Integer pokemonId) throws Exception;
     public void onOptionsChange(DataSource dataSource, String dbPath) throws Exception {}
 
-    /** Modified due to the modification for the Interface Segregation principle
-     * 
+    /** Modified due to the modification for the Interface Segregation principle.
+     * This method sets up the locale for services that support localized properties.
+     * It adheres to the Liskov Substitution Principle by ensuring that any service
+     * implementing the interface can be used interchangeably for the parameter service
+     * (here {@link PokemonHttpProvider}).
+     * If a new service is created and uses localized properties, it simply needs to implement
+     * the {@link LocalizedPropertyProviderInterface} interface to be compatible with this method.
+     *
      * @param service the service to configure with the chosen locale
      */
-
     public void setupServiceLocale(LocalizedPropertyProviderInterface service) { 
         service.setStringPropertyLocale(this.locale);
     }

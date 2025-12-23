@@ -1,5 +1,11 @@
 # TP Mise en pratique des principes SOLID
 
+Ce TP a été réalisé par Anaïs Dubois et Marius Pascal.
+
+La configuration est globalement la même que celle fournie initialement. Le `build.gradle` a été légèrement changé pour forcer l'utilisation de Java 17 (lignes 5 à 10). Nous avons la version 8.5 de Gradle, et en conséquence nous avons modifié la ligne 35 car la commande n'était plus supportée en Gradle 8.5, et la ligne 29 a été modifiée pour résoudre des problèmes de doublons dans les dépendances.
+
+Le projet se compile toujours en faisant `./graldew build` et s'exécute avec `./gradlew run`.
+
 ## Mise en place
 
 Récupérez le dossier `PokedexProject`. Il s'agit d'un projet configuré pour l'IDE IntelliJ, et le gestionnaire de build Gradle. 

@@ -201,14 +201,4 @@ public class PokemonHttpProvider extends AbstractPokemonProviderService implemen
         return this.locale;
     }
 
-
-
-    // public static void main(String[] args) {
-    //     makeHttpRequest("https://pokeapi.co/api/v2/pokemon/", 1);
-    //     //System.out.println(pokemonData);
-    //     Integer height = new PokemonHttpProvider().getIntProperty("height");
-    //     System.out.println("Height : " + height);
-    //     Integer weight = new PokemonHttpProvider().getIntProperty("weight");
-    //     System.out.println("Weight : " + weight);
-    // }
 }
